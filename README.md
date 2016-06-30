@@ -8,7 +8,7 @@ Look at mongo.go for a Sample implementation and storeage.go is the basic interf
 Make sure your GOPATH and all is set.
 
 ## Getthing Running
-  * Do `go get github.com/meson10/tfstate`
+  * Do `go get github.com/oogway/tfstate`
   * Execute `tfstate`
   
 You can run `tfstate --help` to check usage:
