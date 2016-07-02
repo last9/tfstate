@@ -121,13 +121,17 @@ func (s *MongoDB) Get(ident string) ([]byte, error) {
 	coll := db.C(ident)
 
 	state := &tfState{}
-	if err := coll.Find(nil).Sort("$natural").One(&state); err != nil {
+	if err := coll.Find(nil).Sort("-$natural").One(&state); err != nil {
 		if err.Error() != "not found" {
 			return nil, err
 		}
 	}
 
-	return []byte{}, nil
+	if out, err := json.Marshal(state); err != nil {
+		return nil, err
+	} else {
+		return out, nil
+	}
 }
 
 // Write the state to a database, even if the same version/serial exists, new
